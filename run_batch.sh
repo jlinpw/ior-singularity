@@ -5,14 +5,13 @@ source inputs.sh
 
 jobdir=${PWD}
 export WFP_whost=${resource_publicIp}
-WFP_jobscript=${jsource}.sbatch 
 echo Running on $WFP_whost
 
 ssh_options="-o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 sshcmd="ssh -f ${ssh_options} $WFP_whost"
 
-echo "submitting batch job: $WFP_jobscript..."
-jobid=$(${sshcmd} "sbatch -o ${HOME}/slurm_job_%j.out -e ${HOME}/slurm_job_%j.out -N ${nnodes} --ntasks-per-node=${ppn} ${WFP_jobscript};echo Runcmd done2 >> ~/job.exit" | tail -1 | awk -F ' ' '{print $4}')
+echo "submitting batch job: ior.sbatch..."
+jobid=$(${sshcmd} "sbatch -o ${HOME}/slurm_job_%j.out -e ${HOME}/slurm_job_%j.out -N ${nnodes} --ntasks-per-node=${ppn} ior.sbatch;echo Runcmd done2 >> ~/job.exit" | tail -1 | awk -F ' ' '{print $4}')
 echo "JOB ID: ${jobid}"
 
 # Prepare kill script
@@ -37,6 +36,4 @@ echo "batch job done!"
 
 # copy the job output files back to the workflow run dir
 scp ${WFP_whost}:${HOME}/slurm_job_${jobid}.out ${jobdir}
-scp ${WFP_whost}:${HOME}/test_build_${jobid}.txt ${jobdir}
-scp ${WFP_whost}:${HOME}/${jsource}_ior_${jobid}.txt ${jobdir}
-scp ${WFP_whost}:${HOME}/${jsource}_mdtest_${jobid}.txt ${jobdir}
+scp ${WFP_whost}:${HOME}/ior_${jobid}.txt ${jobdir}
