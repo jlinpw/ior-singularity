@@ -69,7 +69,7 @@ ${sshcmd} hostname
 
 scp ${jobdir}/ior.sbatch ${WFP_whost}:${HOME}
 
-cat > wfenv.sh <<EOF
+cat > ${jobdir}/wfenv.sh <<EOF
 export I_MPI_FABRICS=efa
 git clone -c feature.manyFiles=true https://github.com/spack/spack.git
 . $HOME/spack/share/spack/setup-env.sh
