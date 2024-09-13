@@ -76,9 +76,10 @@ git clone -c feature.manyFiles=true https://github.com/spack/spack.git
 spack install intel-oneapi-mpi
 lmod=\$(ls -1 /usr/share/lmod | grep -E '^[0-9]+\.[0-9]+' | sort -V | tail -n 1)
 source /usr/share/lmod/\${lmod}/init/bash
-yes | spack module lmod refresh intel-oneapi-mpi
+yes | spack module lmod refresh intel-oneapi-mpi gcc-runtime glibc
 export MODULEPATH=\$MODULEPATH:$HOME/spack/share/spack/lmod/linux-rocky8-x86_64/Core
 echo \$MODULEPATH
+module load gcc-runtime glibc
 module load intel-oneapi-mpi
 singularity build ior.sif docker://joshuarobinson/ior
 EOF
