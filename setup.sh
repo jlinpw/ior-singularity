@@ -81,7 +81,7 @@ export MODULEPATH=\$MODULEPATH:$HOME/spack/share/spack/lmod/linux-rocky8-x86_64/
 echo \$MODULEPATH
 module load gcc-runtime glibc
 module load intel-oneapi-mpi
-singularity build ior.sif docker://joshuarobinson/ior
+singularity build --force ior.sif docker://joshuarobinson/ior
 EOF
 
 scp ${jobdir}/wfenv.sh ${WFP_whost}:${HOME}
