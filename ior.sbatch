@@ -15,6 +15,7 @@ sudo mkdir -p /lustre/bench/mdtest/bin_$SLURM_JOB_ID /lustre/bench/mdtest/run_$S
 
 # copy the executable
 cp ior /lustre/bench/ior/bin_$SLURM_JOB_ID/ior
+cp mdtest /lustre/bench/mdtest/bin_$SLURM_JOB_ID/mdtest
 
 # ior tests
 mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /lustre ior.sif ior -w -r -i 3 -o /lustre/bench/ior/run_$SLURM_JOB_ID/out -t 64m -b 64m -s 16 -F -C -e > iort64mb64m_$SLURM_JOB_ID.txt
