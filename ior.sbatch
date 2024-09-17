@@ -14,7 +14,7 @@ sudo mkdir -p /hammerspace/bench/ior/bin_$SLURM_JOB_ID /hammerspace/bench/ior/ru
 sudo mkdir -p /hammerspace/bench/mdtest/bin_$SLURM_JOB_ID /hammerspace/bench/mdtest/run_$SLURM_JOB_ID
 
 # ior tests
-mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /hammerspace/ ior.sif ior -w -r -i 3 -o /hammerspace/bench/ior/run_$SLURM_JOB_ID/out -t 64m -b 64m -s 16 -F -C -e > iort64mb64m_$SLURM_JOB_ID.txt
+mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec ior.sif ior -w -r -i 3 -o /hammerspace/bench/ior/run_$SLURM_JOB_ID/out -t 64m -b 64m -s 16 -F -C -e > iort64mb64m_$SLURM_JOB_ID.txt
 mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /hammerspace ior.sif ior -w -r -i 3 -o /hammerspace/bench/ior/run_$SLURM_JOB_ID/out -t 1m -b 64m -s 16 -F -C -e > iort1mb64m_$SLURM_JOB_ID.txt
 mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /hammerspace ior.sif ior -w -r -i 3 -o /hammerspace/bench/ior/run_$SLURM_JOB_ID/out -t 4k -b 64m -s 16 -F -C -e > iort4kb64m_$SLURM_JOB_ID.txt
 
