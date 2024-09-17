@@ -10,8 +10,8 @@ set -ex
 source wfenv.sh
 
 # run dir setup
-mkdir -p /hammerspace/bench/ior/bin_$SLURM_JOB_ID /hammerspace/bench/ior/run_$SLURM_JOB_ID
-mkdir -p /hammerspace/bench/mdtest/bin_$SLURM_JOB_ID /hammerspace/bench/mdtest/run_$SLURM_JOB_ID
+sudo mkdir -p /hammerspace/bench/ior/bin_$SLURM_JOB_ID /hammerspace/bench/ior/run_$SLURM_JOB_ID
+sudo mkdir -p /hammerspace/bench/mdtest/bin_$SLURM_JOB_ID /hammerspace/bench/mdtest/run_$SLURM_JOB_ID
 
 # ior tests
 mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /hammerspace ior.sif ior -w -r -i 3 -o /hammerspace/bench/ior/run_$SLURM_JOB_ID/out -t 64m -b 64m -s 16 -F -C -e > iort64mb64m_$SLURM_JOB_ID.txt
