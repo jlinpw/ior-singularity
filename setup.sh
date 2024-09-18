@@ -67,7 +67,8 @@ echod "Check connection to cluster"
 sshcmd="ssh -f ${ssh_options} $WFP_whost"
 ${sshcmd} hostname
 
-scp ${jobdir}/ior.sbatch ${WFP_whost}:${HOME}
+WFP_jobscript=${jsource}.sbatch 
+scp ${jobdir}/slurm-jobs/generic/${WFP_jobscript} ${WFP_whost}:${HOME}
 
 cat > ${jobdir}/wfenv.sh <<EOF
 export I_MPI_FABRICS=efa
