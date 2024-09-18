@@ -19,5 +19,5 @@ mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /lustre ior.sif ior -w -
 mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /lustre ior.sif ior -w -r -i 3 -o /lustre/bench/ior/run_$SLURM_JOB_ID/out -t 4k -b 64m -s 16 -F -C -e
 
 # mdtest
-mpirun -ppn $SLURM_CPUS_ON_NODE /lustre/bench/mdtest/bin_$SLURM_JOB_ID/mdtest -n 20840 -e 4096 -w 4096 -i 3 -u -d /lustre/bench/mdtest/run_$SLURM_JOB_ID
-mpirun -ppn $SLURM_CPUS_ON_NODE /lustre/bench/mdtest/bin_$SLURM_JOB_ID/mdtest -n 20840 -i 1 -u -d /lustre/bench/mdtest/run_$SLURM_JOB_ID
+mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /lustre ior.sif mdtest -n 20840 -e 4096 -w 4096 -i 3 -u -d /lustre/bench/mdtest/run_$SLURM_JOB_ID
+mpirun -ppn $SLURM_CPUS_ON_NODE singularity exec --bind /lustre ior.sif mdtest -n 20840 -i 1 -u -d /lustre/bench/mdtest/run_$SLURM_JOB_ID
